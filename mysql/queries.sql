@@ -48,3 +48,38 @@ delete from Genre where Name = 'Traditional';
 
 /* Try to select the record that was just deleted */
 select * from Genre where Name = 'Traditional';
+
+/*
+Select the name column for each of the records in
+the `Artist` table
+*/
+select Name from Artist;
+
+/*
+Select the `FirstName` and `LastName` for each of the
+records in the `Customer` table
+*/
+select FirstName, LastName from Customer;
+
+/*
+Select all of the columns for every record in the `Track`
+table
+*/
+select * from Track;
+
+/*
+Select all of the names from the `MediaType` table
+*/
+select Name from MediaType;
+
+/*
+Select all `Track` records where the `Composer` is `U2`
+*/
+select * from Track
+where Composer = 'U2';
+
+/*
+Select all `Album` records where the `AlbumId` is 232;
+*/
+select * from Album
+where AlbumId = 232;
