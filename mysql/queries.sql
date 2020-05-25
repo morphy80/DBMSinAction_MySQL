@@ -183,3 +183,64 @@ WHERE Playlist.Name = 'Grunge';
 
 /*Find a playlist that contains only 1 track*/
 SELECT Playlist.Name as Playlist, COUNT(*) From Playlist INNER JOIN PlaylistTrack on Playlist.PlaylistId = PlaylistTrack.PlaylistId  GROUP BY Playlist HAVING count(*) = 1;
+
+/*
+Order all of the `Album` records by the `Title` field in 
+ascending order
+*/
+SELECT * FROM Album ORDER BY Title;
+
+/*
+Order all of the `Album` records by the `Title` field in
+descending order
+*/
+SELECT * FROM Album ORDER BY Title DESC;
+
+/*
+Order all of the `Album` records by the `ArtistId` field in 
+ascending order, and within that, order by `Title`
+*/
+SELECT * FROM Album ORDER BY ArtistId, Title;
+
+/*
+Select the Track name and the Album title and order them
+by the Album title, and then by the track name
+*/
+SELECT Track.Name, Album.Title FROM Track
+INNER JOIN Album on Track.AlbumId = Album.AlbumId
+ORDER BY Album.Title, Track.Name;
+
+/*
+Select the `InvoiceDate`, `BillingCity` and `Total` from the
+`Invoice` table. Order them descendingly and limit the results
+to 5
+*/
+SELECT InvoiceDate, BillingCity, Total FROM Invoice
+ORDER BY Total DESC
+LIMIT 5;
+
+/*
+Select the `InvoiceDate`, `BillingAddress` and `Total` from the
+`Invoice` table. Order them descendingly according to the `InvoiceDate`
+*/
+SELECT InvoiceDate, BillingAddress, Total FROM Invoice ORDER BY InvoiceDate DESC;
+
+/*
+Select the EmployeeId, LastName, FirstName and HireDate of the 3 Employees with the most recent HireDate
+*/
+SELECT EmployeeId, LastName, FirstName, HireDate FROM Employee
+ORDER BY HireDate DESC, EmployeeId DESC
+LIMIT 3;
+
+/*a query that shows our 10 biggest invoices by `Total value`, in descending order
+If two invoices have the same Total, the more recent should appear first.
+The query should also show the `Name` of the Customer
+*/
+SELECT 
+    concat(Customer.FirstName, " ", Customer.LastName) as Name,
+    Invoice.InvoiceDate as Date,
+    Invoice.Total
+FROM Invoice
+INNER JOIN Customer ON Invoice.CustomerId = Customer.CustomerId
+ORDER BY Total DESC, Date DESC
+LIMIT 10;
