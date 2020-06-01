@@ -268,3 +268,17 @@ SELECT COUNT(FirstName) FROM Customer WHERE SupportRepId = 4;
 SELECT Employee.FirstName AS Employee, COUNT(Customer.FirstName) AS Customer FROM Employee
 JOIN Customer ON Customer.SupportRepId = Employee.EmployeeId
 WHERE Employee.FirstName = 'Jane';
+
+/*The min funtion looks at all of the values in a specified column 
+and returns the minimum*/
+SELECT MIN(LastName) FROM Customer;
+
+/*What is the date of birth of our oldest employee?*/
+SELECT MIN(BirthDate) FROM Employee;
+
+/*The max funtion looks at all of the values in a specified column 
+and returns the maximum*/
+SELECT MAX(LastName) FROM Customer;
+
+/*On what date was our most recent employee hired?*/
+SELECT MAX(HireDate) FROM Employee;
