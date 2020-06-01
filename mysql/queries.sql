@@ -296,3 +296,52 @@ SELECT TOTAL FROM Invoice WHERE InvoiceId = 2;
 multiplying the price by quantity to get the total for each line item.*/
 SELECT SUM(UnitPrice * Quantity) FROM InvoiceLine
 WHERE InvoiceId = 2;
+
+/*counting how many tracks use each of the five different media types.
+ we will group by the AlbumID in the track table and show the number of rows in each group.*/
+SELECT COUNT(*) FROM  Track
+GROUP BY AlbumId;
+
+/*we group by the AlbumID in the track table.
+Show the number of rows in each group and the AlbumID for each.*/
+SELECT AlbumId, COUNT(*) FROM Track
+GROUP BY AlbumId;
+
+/*show the album title for each.*/
+SELECT Album.Title, COUNT(*) FROM Track
+INNER JOIN Album ON Track.AlbumId = Album.AlbumId
+GROUP BY Track.AlbumId;
+
+/* shown the cheapest track on each album using the min aggregate function.*/
+SELECT AlbumId, MIN(UnitPrice) FROM Track
+GROUP BY AlbumId;
+
+/*using the max function to find the most expensive track on each album.*/
+SELECT AlbumId, MAX(UnitPrice) FROM Track
+GROUP BY AlbumId;
+
+/*the total cost of each album.*/
+SELECT AlbumId, ROUND(SUM(UnitPrice), 2) FROM Track
+GROUP BY AlbumId;
+
+/* join the album table to include the title of the album.*/
+SELECT Album.Title, ROUND(SUM(UnitPrice), 2) FROM Track
+INNER JOIN Album ON Track.AlbumId = Album.AlbumId
+GROUP BY Track.AlbumId;
+
+/*How many customers do we have in the City of Berlin?*/
+SELECT COUNT(city) FROM Customer WHERE city = "Berlin";
+
+/*How much has been made in sales for the track "The Woman King"?*/
+SELECT SUM(InvoiceLine.UnitPrice * InvoiceLine.Quantity), Track.Name AS Track FROM InvoiceLine
+JOIN Track ON InvoiceLine.TrackId = Track.TrackId
+WHERE Track.Name = "The Woman King";
+
+/*Create a list of the top 5 acts by number of tracks. 
+The table should include the name of the artist and the number of tracks they have.*/
+SELECT Artist.Name AS Artist, COUNT(Track.TrackId) AS Track FROM Artist
+JOIN Album ON Artist.ArtistId = Album.ArtistId
+JOIN Track ON Album.AlbumId = Track.AlbumId
+GROUP BY Artist.Name
+ORDER BY COUNT(Artist.Name)
+DESC LIMIT 5;
