@@ -288,3 +288,11 @@ SELECT AVG(Total) FROM Invoice;
 
 /*The Round function*/
 SELECT ROUND(AVG(Total), 2) FROM Invoice;
+
+/*The Sum function*/
+SELECT TOTAL FROM Invoice WHERE InvoiceId = 2;
+
+/*Here's what we get by taking the line items from that invoice, 
+multiplying the price by quantity to get the total for each line item.*/
+SELECT SUM(UnitPrice * Quantity) FROM InvoiceLine
+WHERE InvoiceId = 2;
