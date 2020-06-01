@@ -282,3 +282,6 @@ SELECT MAX(LastName) FROM Customer;
 
 /*On what date was our most recent employee hired?*/
 SELECT MAX(HireDate) FROM Employee;
+
+/*The Average function*/
+SELECT AVG(Total) FROM Invoice;
