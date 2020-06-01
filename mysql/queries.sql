@@ -285,3 +285,6 @@ SELECT MAX(HireDate) FROM Employee;
 
 /*The Average function*/
 SELECT AVG(Total) FROM Invoice;
+
+/*The Round function*/
+SELECT ROUND(AVG(Total), 2) FROM Invoice;
